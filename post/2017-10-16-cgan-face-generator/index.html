@@ -1,0 +1,212 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Journey of building a face generator | hiepph</title><meta name=keywords content><meta name=description content="Github
+I was impressed by Image-to-Image Demo with pix2pix (a.k.a cGAN) model (Paper). I and my friends tried to build one, everything from scratch in an AI hackathon. The idea is the machine tries to generate a real face from user&rsquo;s sketch.
+Collect data The ultra important job is always to get yourself a good quantity and quality dataset. This is the most-enlightened lesson I&rsquo;ve ever learned in deep learning research."><meta name=author content><link rel=canonical href=https://hiepph.github.io/post/2017-10-16-cgan-face-generator/><link crossorigin=anonymous href=/assets/css/stylesheet.min.2d6dbfc6e0f8a1db1c9d082a76dc11d094328cf63f247bbc2421dfaa7f2bb170.css integrity="sha256-LW2/xuD4odscnQgqdtwR0JQyjPY/JHu8JCHfqn8rsXA=" rel="preload stylesheet" as=style><script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script><link rel=icon href=https://hiepph.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://hiepph.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://hiepph.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://hiepph.github.io/apple-touch-icon.png><link rel=mask-icon href=https://hiepph.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><meta name=generator content="Hugo 0.83.1"><meta property="og:title" content="Journey of building a face generator"><meta property="og:description" content="Github
+I was impressed by Image-to-Image Demo with pix2pix (a.k.a cGAN) model (Paper). I and my friends tried to build one, everything from scratch in an AI hackathon. The idea is the machine tries to generate a real face from user&rsquo;s sketch.
+Collect data The ultra important job is always to get yourself a good quantity and quality dataset. This is the most-enlightened lesson I&rsquo;ve ever learned in deep learning research."><meta property="og:type" content="article"><meta property="og:url" content="https://hiepph.github.io/post/2017-10-16-cgan-face-generator/"><meta property="article:section" content="post"><meta property="article:published_time" content="2017-10-16T00:00:00+00:00"><meta property="article:modified_time" content="2017-10-16T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Journey of building a face generator"><meta name=twitter:description content="Github
+I was impressed by Image-to-Image Demo with pix2pix (a.k.a cGAN) model (Paper). I and my friends tried to build one, everything from scratch in an AI hackathon. The idea is the machine tries to generate a real face from user&rsquo;s sketch.
+Collect data The ultra important job is always to get yourself a good quantity and quality dataset. This is the most-enlightened lesson I&rsquo;ve ever learned in deep learning research."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://hiepph.github.io/post/"},{"@type":"ListItem","position":3,"name":"Journey of building a face generator","item":"https://hiepph.github.io/post/2017-10-16-cgan-face-generator/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Journey of building a face generator","name":"Journey of building a face generator","description":"Github\nI was impressed by Image-to-Image Demo with pix2pix (a.k.a cGAN) model (Paper). I and my friends tried to build one, everything from scratch in an AI hackathon. The idea is the machine tries to generate a real face from user\u0026rsquo;s sketch.\nCollect data The ultra important job is always to get yourself a good quantity and quality dataset. This is the most-enlightened lesson I\u0026rsquo;ve ever learned in deep learning research.","keywords":[],"articleBody":"Github\nI was impressed by Image-to-Image Demo with pix2pix (a.k.a cGAN) model (Paper). I and my friends tried to build one, everything from scratch in an AI hackathon. The idea is the machine tries to generate a real face from user’s sketch.\nCollect data The ultra important job is always to get yourself a good quantity and quality dataset. This is the most-enlightened lesson I’ve ever learned in deep learning research.\n A Good Quality Model Begins with a Clean Dataset. Source\n I took a look at CelebA dataset. But I and my team all decided to have only girl images due to personal favorite. So we crawled actress' images from Google, used Dlib to detect \u0026 crop their faces, used OpenCV to get sketches and made our own 8303 faces dataset.\nThings would be perfect without noises of background. But we couldn’t find any better source or asked for more.\nNote: After a month from competition, I teamed up with one of our members - @pexea12 to release the dataset (mentioned above without the sketches part) as the name of CAF dataset (abbreviation of Cropped Actresses’ Faces). All mechanism and detail can be found in the blog post: CAF dataset, over 8.000 faces of famous actresses.\nModel implementation I was lucky.\nI found a PyTorch port implementation of cGAN model from Jun-Yan Zhu (one of the authors of the original Paper) and his project pytorch-CycleGAN-and-pix2pix. Everything is explained from how to prepare a dataset, preprocess input, train model to visualize the result.\nThen the path was clear. I already had a dataset. I just needed to divide it into 80/20 ratio as train and validate parts, preprocess using provided script, train the model, supervise the loss and frequently check generated images each epoch.\nTraining This is the most stressed part I’ve ever experienced.\nTrain GAN is always expensive and time-consuming. It’s about training 2 networks: D for Discriminator, and G for Generator, beside this is an image-related task.\nThe default train script is 200 epochs, but I decided to shorten down to 30 epochs for an experiment, and due to time-limit of the hackathon.\nFirst I try with local machine and a GPU Nvidia GeForce GTX 960, approximately 30 minutes for each epoch. Which means 15 hours of uptime. It ate all resources of the machine, and the heat from my computer made me hard to develop other features.\nSo I stopped at 5th epoch, and switched to a kindly gifted AWS p2.8xlarge instance. Now with 4 GPUs with 4x performance and more memory so I can fit a larger batch size, each epoch took just about 7~8 minutes to complete. Which means more 4 times faster, and it took about 3 hours to complete.\nDisclosure: At the hackathon, the ratio was actually 95/5 for train and validation task as we tried to mirror the #edges2shoes example. And about 25th~30th epoch, model seemed to go overfit, the loss didn’t go down anymore. Train sketch was way more beautiful than test sketch. So after the competition, I tested again as 80/20 ratio, and the loss looked like it can go down if I continued to train more. It still took 10 long-lasting hours to complete 30 epochs.\nModel integration Firstly, we write a simple server for uploading file task, using Flask:\nimport os import time from flask import Flask, jsonify, request, redirect, url_for, send_file, make_response from flask_cors import CORS, cross_origin # Config app = Flask(__name__) CORS(app) app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'upload') app.config['ALLOWED_EXTENSIONS'] = set(['jpg', 'jpeg', 'png']) # Helpers def allowed_file(filename): return '.' in filename and \\ filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS'] def error(msg): return jsonify({'error': msg}) # Routers @app.route('/') def pong(): return 'Pong', {'Content-Type': 'text-plain; charset=utf-8'} @app.route('/upload', methods=['POST']) def upload(): if 'file' not in request.files: return error('file form-data not existed'), 412 image = request.files['file'] if not allowed_file(image.filename): return error('Only supported %s' % app.config['ALLOWED_EXTENSIONS']), 415 # Submit taylor.jpg --- taylor_1234567.jpg (name + timestamp) image_name, ext = image.filename.rsplit('.', 1) image_name = image_name + '_' + str(int(time.time())) + '.' + ext # Save image to /upload image_path = os.path.join(app.config['UPLOAD_FOLDER'], image_name) image.save(image_path) return send_file(image_path) if __name__ == '__main__': app.run(debug=True) Simple enough, GET / for checking connection, and POST /upload for storing upload image.\nNext is the most important part: a generated script for using trained Generator (G) model to output a fake photo from input image. Follow this issue, problem solved:\nimport os from options.test_options import TestOptions from data.data_loader import CreateDataLoader from models.models import create_model import util.util as util if __name__ == \"__main__\": if not os.path.exists('results'): os.mkdir('results') opt = TestOptions().parse() opt.nThreads = 1 opt.batchSize = 1 opt.serial_batches = True opt.no_flip = True data_loader = CreateDataLoader(opt) dataset = data_loader.load_data() model = create_model(opt) for i, data in enumerate(dataset): if i = opt.how_many: break model.set_input(data) # Forward model.test() # Convert image to numpy array fake = util.tensor2im(model.fake_B.data) # Save image img_path = model.get_image_paths() img_name = img_path[0].split('/')[-1] util.save_image(fake, 'results/{}'.format(img_name)) The last part is more simple now, just fuse these above scripts:\nimport os import time from flask import Flask, jsonify, request, redirect, url_for, send_file, make_response from flask_cors import CORS, cross_origin from options.test_options import TestOptions from data.data_loader import CreateDataLoader from models.models import create_model import util.util as util # Model loader opt = TestOptions().parse() opt.nThreads = 1 opt.batchSize = 1 opt.serial_batches = True opt.no_flip = True model = create_model(opt) # Config app = Flask(__name__) CORS(app) app.config['UPLOAD_DIR'] = os.path.join(os.getcwd(), 'upload') app.config['RESULT_DIR'] = os.path.join(os.getcwd(), 'results') app.config['ALLOWED_EXTENSIONS'] = set(['jpg', 'jpeg', 'png']) # Setup if not os.path.exists(app.config['UPLOAD_DIR']): os.mkdir(app.config['UPLOAD_DIR']) if not os.path.exists(app.config['RESULT_DIR']): os.mkdir(app.config['RESULT_DIR']) # Helpers def allowed_file(filename): return '.' in filename and \\ filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS'] def error(msg): return jsonify({'error': msg}) # Routers @app.route('/') def pong(): return 'Pong', {'Content-Type': 'text-plain; charset=utf-8'} @app.route('/gen', methods=['POST']) def gen(): if 'file' not in request.files: return error('file form-data not existed'), 412 image = request.files['file'] if not allowed_file(image.filename): return error('Only supported %s' % app.config['ALLOWED_EXTENSIONS']), 415 # Submit taylor.jpg --- save image to upload/12345678/taylor.jpg (upload/timestamp/imagename.ext) t = int(time.time()) image_dir = os.path.join(app.config['UPLOAD_DIR'], str(t)) image_path = os.path.join(image_dir, image.filename) os.mkdir(image_dir) image.save(image_path) # Prepare data loader opt.dataroot = image_dir data_loader = CreateDataLoader(opt) dataset = data_loader.load_data() for i, data in enumerate(dataset): if i = opt.how_many: break model.set_input(data) # Forward model.test() # Convert image to numpy array fake = util.tensor2im(model.fake_B.data) # Save image result_dir = os.path.join(app.config['RESULT_DIR'], str(t)) result_path = os.path.join(result_dir, image.filename) os.mkdir(result_dir) util.save_image(fake, result_path) return send_file(result_path) if __name__ == '__main__': app.run() Now the main route is POST /gen, just request an image as form-data with file key, and receive response.\nSome demo I achieved from a remake after the hackathon. First, let’s see this trained input: generated result is beautiful and artistic.\nA test I randomly picked from the internet: a little bit ugly but the fun part is model knows some characteristics from the face like skin and hair color. It’s like a colored version of the original image.\nThat’s it. For more technical detail, you can check out my main project on Github: cgan-face-generator. Although this is just a Back End part, build a top Front End application or web page is just a matter of time.\nConclusion Did I do a great job? Maybe no. All the credits go to the authors of the paper. And this is just a small process of real-world deep learning engineering. There are so many problems if you want to bring a new idea into production and scale to reality. Just take a look at Michelangelo or TFX.\nBut this project was fun. It satisfied my curiosity. Today I learned to break down a problem to small tasks that you can solve, and focus to clear each task even if you’re not so sure about it. Just take little steps, at least it’ll lead you to somewhere forward.\nHappy deep learning.\n","wordCount":"1270","inLanguage":"en","datePublished":"2017-10-16T00:00:00Z","dateModified":"2017-10-16T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://hiepph.github.io/post/2017-10-16-cgan-face-generator/"},"publisher":{"@type":"Organization","name":"hiepph","logo":{"@type":"ImageObject","url":"https://hiepph.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script><noscript><style type=text/css>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><header class=header><nav class=nav><div class=logo><a href=https://hiepph.github.io accesskey=h title="hiepph (Alt + H)">hiepph</a>
+<span class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></span></div><ul id=menu></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class=post-title>Journey of building a face generator</h1><div class=post-meta>October 16, 2017</div></header><div class=post-content><p><img loading=lazy src=https://raw.githubusercontent.com/hiepph/cgan-face-generator/master/demo/train.gif alt=demo></p><p><a href=https://github.com/hiepph/cgan-face-generator>Github</a></p><p>I was impressed by <a href=https://affinelayer.com/pixsrv/>Image-to-Image Demo</a> with pix2pix (a.k.a cGAN) model (<a href=https://arxiv.org/abs/1611.07004>Paper</a>).
+I and my friends tried to build one, everything from scratch in an AI hackathon.
+The idea is the machine tries to generate a real face from user&rsquo;s sketch.</p><p><img loading=lazy src=https://github.com/hiepph/cgan-face-generator/raw/master/demo/overview.png alt=overview></p><h2 id=collect-data>Collect data<a hidden class=anchor aria-hidden=true href=#collect-data>#</a></h2><p><img loading=lazy src=http://i.imgur.com/qJbd8Ig.jpg alt=CAF></p><p>The ultra important job is always to get yourself a good quantity and quality dataset.
+This is the most-enlightened lesson I&rsquo;ve ever learned in deep learning research.</p><blockquote><p>A Good Quality Model Begins with a Clean Dataset.
+<a href=https://makegirlsmoe.github.io/main/2017/08/14/news-english.html>Source</a></p></blockquote><p>I took a look at <a href=http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html>CelebA</a> dataset.
+But I and my team all decided to have only girl images due to personal favorite.
+So we crawled actress' images from Google, used <a href=http://dlib.net/>Dlib</a> to detect & crop their faces, used <a href=https://opencv.org/>OpenCV</a> to get sketches and made our own 8303 faces dataset.</p><p>Things would be perfect without noises of background.
+But we couldn&rsquo;t find any better source or asked for more.</p><p><strong>Note</strong>: After a month from competition, I teamed up with one of our members - <a href=https://pexea12.github.io/>@pexea12</a> to release the dataset (mentioned above without the sketches part) as the name of CAF dataset (abbreviation of <em>Cropped Actresses’ Faces</em>).
+All mechanism and detail can be found in the blog post: <a href=http://blog.bayo.vn/caf/>CAF dataset, over 8.000 faces of famous actresses</a>.</p><h2 id=model-implementation>Model implementation<a hidden class=anchor aria-hidden=true href=#model-implementation>#</a></h2><p>I was lucky.</p><p>I found a <a href=http://pytorch.org/>PyTorch</a> port implementation of cGAN model from <a href=https://github.com/junyanz>Jun-Yan Zhu</a> (one of the authors of the original Paper) and his project <a href=https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix>pytorch-CycleGAN-and-pix2pix</a>.
+Everything is explained from how to prepare a dataset, preprocess input, train model to visualize the result.</p><p>Then the path was clear.
+I already had a dataset.
+I just needed to divide it into 80/20 ratio as train and validate parts, preprocess using provided script, train the model, supervise the loss and frequently check generated images each epoch.</p><h2 id=training>Training<a hidden class=anchor aria-hidden=true href=#training>#</a></h2><p><img loading=lazy src=https://github.com/hiepph/cgan-face-generator/raw/master/demo/train.png alt=train></p><p>This is the most stressed part I&rsquo;ve ever experienced.</p><p>Train GAN is always expensive and time-consuming.
+It&rsquo;s about training 2 networks: D for Discriminator, and G for Generator, beside this is an image-related task.</p><p>The default train script is 200 epochs, but I decided to shorten down to 30 epochs for an experiment, and due to time-limit of the hackathon.</p><p>First I try with local machine and a GPU Nvidia GeForce GTX 960, approximately 30 minutes for each epoch.
+Which means 15 hours of uptime. It ate all resources of the machine, and the heat from my computer made me hard to develop other features.</p><p>So I stopped at 5th epoch, and switched to a kindly gifted AWS <code>p2.8xlarge</code> instance.
+Now with 4 GPUs with 4x performance and more memory so I can fit a larger batch size, each epoch took just about 7~8 minutes to complete. Which means more 4 times faster, and it took about 3 hours to complete.</p><p><strong>Disclosure</strong>: At the hackathon, the ratio was actually 95/5 for train and validation task as we tried to mirror the #edges2shoes example.
+And about 25th~30th epoch, model seemed to go overfit, the loss didn&rsquo;t go down anymore.
+Train sketch was way more beautiful than test sketch.
+So after the competition, I tested again as 80/20 ratio, and the loss looked like it can go down if I continued to train more. It still took 10 long-lasting hours to complete 30 epochs.</p><h2 id=model-integration>Model integration<a hidden class=anchor aria-hidden=true href=#model-integration>#</a></h2><p>Firstly, we write a simple server for uploading file task, using <a href=http://flask.pocoo.org/>Flask</a>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> os
+<span style=color:#f92672>import</span> time
+
+<span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask, jsonify, request, redirect, url_for, send_file, make_response
+<span style=color:#f92672>from</span> flask_cors <span style=color:#f92672>import</span> CORS, cross_origin
+
+<span style=color:#75715e># Config</span>
+app <span style=color:#f92672>=</span> Flask(__name__)
+CORS(app)
+app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;UPLOAD_FOLDER&#39;</span>] <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>join(os<span style=color:#f92672>.</span>getcwd(), <span style=color:#e6db74>&#39;upload&#39;</span>)
+app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;ALLOWED_EXTENSIONS&#39;</span>] <span style=color:#f92672>=</span> set([<span style=color:#e6db74>&#39;jpg&#39;</span>, <span style=color:#e6db74>&#39;jpeg&#39;</span>, <span style=color:#e6db74>&#39;png&#39;</span>])
+
+
+<span style=color:#75715e># Helpers</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>allowed_file</span>(filename):
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;.&#39;</span> <span style=color:#f92672>in</span> filename <span style=color:#f92672>and</span> \
+        filename<span style=color:#f92672>.</span>rsplit(<span style=color:#e6db74>&#39;.&#39;</span>, <span style=color:#ae81ff>1</span>)[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>in</span> app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;ALLOWED_EXTENSIONS&#39;</span>]
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>error</span>(msg):
+    <span style=color:#66d9ef>return</span> jsonify({<span style=color:#e6db74>&#39;error&#39;</span>: msg})
+
+
+<span style=color:#75715e># Routers</span>
+<span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#39;/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>pong</span>():
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;Pong&#39;</span>, {<span style=color:#e6db74>&#39;Content-Type&#39;</span>: <span style=color:#e6db74>&#39;text-plain; charset=utf-8&#39;</span>}
+
+
+<span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#39;/upload&#39;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;POST&#39;</span>])
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>upload</span>():
+    <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#39;file&#39;</span> <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> request<span style=color:#f92672>.</span>files:
+        <span style=color:#66d9ef>return</span> error(<span style=color:#e6db74>&#39;file form-data not existed&#39;</span>), <span style=color:#ae81ff>412</span>
+
+    image <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span>files[<span style=color:#e6db74>&#39;file&#39;</span>]
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> allowed_file(image<span style=color:#f92672>.</span>filename):
+        <span style=color:#66d9ef>return</span> error(<span style=color:#e6db74>&#39;Only supported </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#39;</span> <span style=color:#f92672>%</span> app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;ALLOWED_EXTENSIONS&#39;</span>]), <span style=color:#ae81ff>415</span>
+
+    <span style=color:#75715e># Submit taylor.jpg ---&gt; taylor_1234567.jpg (name + timestamp)</span>
+    image_name, ext <span style=color:#f92672>=</span> image<span style=color:#f92672>.</span>filename<span style=color:#f92672>.</span>rsplit(<span style=color:#e6db74>&#39;.&#39;</span>, <span style=color:#ae81ff>1</span>)
+    image_name <span style=color:#f92672>=</span> image_name <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;_&#39;</span> <span style=color:#f92672>+</span> str(int(time<span style=color:#f92672>.</span>time())) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;.&#39;</span> <span style=color:#f92672>+</span> ext
+    <span style=color:#75715e># Save image to /upload</span>
+    image_path <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>join(app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;UPLOAD_FOLDER&#39;</span>], image_name)
+    image<span style=color:#f92672>.</span>save(image_path)
+
+    <span style=color:#66d9ef>return</span> send_file(image_path)
+
+
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+    app<span style=color:#f92672>.</span>run(debug<span style=color:#f92672>=</span>True)
+</code></pre></div><p>Simple enough, <code>GET /</code> for checking connection, and <code>POST /upload</code> for storing upload image.</p><p>Next is the most important part: a generated script for using trained Generator (G) model to output a fake photo from input image.
+Follow this <a href=https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/issues/25>issue</a>, problem solved:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> os
+
+<span style=color:#f92672>from</span> options.test_options <span style=color:#f92672>import</span> TestOptions
+<span style=color:#f92672>from</span> data.data_loader <span style=color:#f92672>import</span> CreateDataLoader
+<span style=color:#f92672>from</span> models.models <span style=color:#f92672>import</span> create_model
+<span style=color:#f92672>import</span> util.util <span style=color:#f92672>as</span> util
+
+
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>exists(<span style=color:#e6db74>&#39;results&#39;</span>):
+        os<span style=color:#f92672>.</span>mkdir(<span style=color:#e6db74>&#39;results&#39;</span>)
+
+    opt <span style=color:#f92672>=</span> TestOptions()<span style=color:#f92672>.</span>parse()
+    opt<span style=color:#f92672>.</span>nThreads <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+    opt<span style=color:#f92672>.</span>batchSize <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+    opt<span style=color:#f92672>.</span>serial_batches <span style=color:#f92672>=</span> True
+    opt<span style=color:#f92672>.</span>no_flip <span style=color:#f92672>=</span> True
+
+    data_loader <span style=color:#f92672>=</span> CreateDataLoader(opt)
+    dataset <span style=color:#f92672>=</span> data_loader<span style=color:#f92672>.</span>load_data()
+    model <span style=color:#f92672>=</span> create_model(opt)
+
+    <span style=color:#66d9ef>for</span> i, data <span style=color:#f92672>in</span> enumerate(dataset):
+        <span style=color:#66d9ef>if</span> i <span style=color:#f92672>&gt;=</span> opt<span style=color:#f92672>.</span>how_many:
+            <span style=color:#66d9ef>break</span>
+        model<span style=color:#f92672>.</span>set_input(data)
+        <span style=color:#75715e># Forward</span>
+        model<span style=color:#f92672>.</span>test()
+
+        <span style=color:#75715e># Convert image to numpy array</span>
+        fake <span style=color:#f92672>=</span> util<span style=color:#f92672>.</span>tensor2im(model<span style=color:#f92672>.</span>fake_B<span style=color:#f92672>.</span>data)
+        <span style=color:#75715e># Save image</span>
+        img_path <span style=color:#f92672>=</span> model<span style=color:#f92672>.</span>get_image_paths()
+        img_name <span style=color:#f92672>=</span> img_path[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39;/&#39;</span>)[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+        util<span style=color:#f92672>.</span>save_image(fake, <span style=color:#e6db74>&#39;results/{}&#39;</span><span style=color:#f92672>.</span>format(img_name))
+</code></pre></div><p>The last part is more simple now, just fuse these above scripts:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> os
+<span style=color:#f92672>import</span> time
+
+<span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask, jsonify, request, redirect, url_for, send_file, make_response
+<span style=color:#f92672>from</span> flask_cors <span style=color:#f92672>import</span> CORS, cross_origin
+
+<span style=color:#f92672>from</span> options.test_options <span style=color:#f92672>import</span> TestOptions
+<span style=color:#f92672>from</span> data.data_loader <span style=color:#f92672>import</span> CreateDataLoader
+<span style=color:#f92672>from</span> models.models <span style=color:#f92672>import</span> create_model
+<span style=color:#f92672>import</span> util.util <span style=color:#f92672>as</span> util
+
+
+<span style=color:#75715e># Model loader</span>
+opt <span style=color:#f92672>=</span> TestOptions()<span style=color:#f92672>.</span>parse()
+opt<span style=color:#f92672>.</span>nThreads <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+opt<span style=color:#f92672>.</span>batchSize <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+opt<span style=color:#f92672>.</span>serial_batches <span style=color:#f92672>=</span> True
+opt<span style=color:#f92672>.</span>no_flip <span style=color:#f92672>=</span> True
+
+model <span style=color:#f92672>=</span> create_model(opt)
+
+
+<span style=color:#75715e># Config</span>
+app <span style=color:#f92672>=</span> Flask(__name__)
+CORS(app)
+app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;UPLOAD_DIR&#39;</span>] <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>join(os<span style=color:#f92672>.</span>getcwd(), <span style=color:#e6db74>&#39;upload&#39;</span>)
+app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;RESULT_DIR&#39;</span>] <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>join(os<span style=color:#f92672>.</span>getcwd(), <span style=color:#e6db74>&#39;results&#39;</span>)
+app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;ALLOWED_EXTENSIONS&#39;</span>] <span style=color:#f92672>=</span> set([<span style=color:#e6db74>&#39;jpg&#39;</span>, <span style=color:#e6db74>&#39;jpeg&#39;</span>, <span style=color:#e6db74>&#39;png&#39;</span>])
+
+<span style=color:#75715e># Setup</span>
+<span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>exists(app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;UPLOAD_DIR&#39;</span>]):
+    os<span style=color:#f92672>.</span>mkdir(app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;UPLOAD_DIR&#39;</span>])
+
+<span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>exists(app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;RESULT_DIR&#39;</span>]):
+    os<span style=color:#f92672>.</span>mkdir(app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;RESULT_DIR&#39;</span>])
+
+
+<span style=color:#75715e># Helpers</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>allowed_file</span>(filename):
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;.&#39;</span> <span style=color:#f92672>in</span> filename <span style=color:#f92672>and</span> \
+        filename<span style=color:#f92672>.</span>rsplit(<span style=color:#e6db74>&#39;.&#39;</span>, <span style=color:#ae81ff>1</span>)[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>in</span> app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;ALLOWED_EXTENSIONS&#39;</span>]
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>error</span>(msg):
+    <span style=color:#66d9ef>return</span> jsonify({<span style=color:#e6db74>&#39;error&#39;</span>: msg})
+
+
+<span style=color:#75715e># Routers</span>
+<span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#39;/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>pong</span>():
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;Pong&#39;</span>, {<span style=color:#e6db74>&#39;Content-Type&#39;</span>: <span style=color:#e6db74>&#39;text-plain; charset=utf-8&#39;</span>}
+
+
+<span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#39;/gen&#39;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;POST&#39;</span>])
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>gen</span>():
+    <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#39;file&#39;</span> <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> request<span style=color:#f92672>.</span>files:
+        <span style=color:#66d9ef>return</span> error(<span style=color:#e6db74>&#39;file form-data not existed&#39;</span>), <span style=color:#ae81ff>412</span>
+
+    image <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span>files[<span style=color:#e6db74>&#39;file&#39;</span>]
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> allowed_file(image<span style=color:#f92672>.</span>filename):
+        <span style=color:#66d9ef>return</span> error(<span style=color:#e6db74>&#39;Only supported </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#39;</span> <span style=color:#f92672>%</span> app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;ALLOWED_EXTENSIONS&#39;</span>]), <span style=color:#ae81ff>415</span>
+
+    <span style=color:#75715e># Submit taylor.jpg ---&gt; save image to upload/12345678/taylor.jpg (upload/timestamp/imagename.ext)</span>
+    t <span style=color:#f92672>=</span> int(time<span style=color:#f92672>.</span>time())
+    image_dir <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>join(app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;UPLOAD_DIR&#39;</span>], str(t))
+    image_path <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>join(image_dir, image<span style=color:#f92672>.</span>filename)
+
+    os<span style=color:#f92672>.</span>mkdir(image_dir)
+    image<span style=color:#f92672>.</span>save(image_path)
+
+    <span style=color:#75715e># Prepare data loader</span>
+    opt<span style=color:#f92672>.</span>dataroot <span style=color:#f92672>=</span> image_dir
+    data_loader <span style=color:#f92672>=</span> CreateDataLoader(opt)
+    dataset <span style=color:#f92672>=</span> data_loader<span style=color:#f92672>.</span>load_data()
+
+    <span style=color:#66d9ef>for</span> i, data <span style=color:#f92672>in</span> enumerate(dataset):
+        <span style=color:#66d9ef>if</span> i <span style=color:#f92672>&gt;=</span> opt<span style=color:#f92672>.</span>how_many:
+            <span style=color:#66d9ef>break</span>
+        model<span style=color:#f92672>.</span>set_input(data)
+        <span style=color:#75715e># Forward</span>
+        model<span style=color:#f92672>.</span>test()
+
+        <span style=color:#75715e># Convert image to numpy array</span>
+        fake <span style=color:#f92672>=</span> util<span style=color:#f92672>.</span>tensor2im(model<span style=color:#f92672>.</span>fake_B<span style=color:#f92672>.</span>data)
+        <span style=color:#75715e># Save image</span>
+        result_dir <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>join(app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;RESULT_DIR&#39;</span>], str(t))
+        result_path <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>join(result_dir, image<span style=color:#f92672>.</span>filename)
+        os<span style=color:#f92672>.</span>mkdir(result_dir)
+        util<span style=color:#f92672>.</span>save_image(fake, result_path)
+
+    <span style=color:#66d9ef>return</span> send_file(result_path)
+
+
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+    app<span style=color:#f92672>.</span>run()
+</code></pre></div><p>Now the main route is <code>POST /gen</code>, just request an image as <code>form-data</code> with <code>file</code> key, and receive response.</p><p>Some demo I achieved from a remake after the hackathon. First, let&rsquo;s see this trained input: generated result is beautiful and artistic.</p><p><img loading=lazy src=https://github.com/hiepph/cgan-face-generator/raw/master/demo/gal.png alt=train></p><p>A test I randomly picked from the internet: a little bit ugly but the fun part is model knows some characteristics from the face like skin and hair color.
+It&rsquo;s like a colored version of the original image.</p><p><img loading=lazy src=https://github.com/hiepph/cgan-face-generator/raw/master/demo/wonder.png alt=test></p><p>That&rsquo;s it. For more technical detail, you can check out my main project on Github: <a href=https://github.com/hiepph/cgan-face-generator>cgan-face-generator</a>.
+Although this is just a Back End part, build a top Front End application or web page is just a matter of time.</p><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Did I do a great job? Maybe no. All the credits go to the authors of the paper.
+And this is just a small process of real-world deep learning engineering. There are so many problems if you want to bring a new idea into production and scale to reality. Just take a look at <a href=https://eng.uber.com/michelangelo/>Michelangelo</a> or <a href=http://www.kdd.org/kdd2017/papers/view/tfx-a-tensorflow-based-production-scale-machine-learning-platform>TFX</a>.</p><p>But this project was fun. It satisfied my curiosity.
+Today I learned to break down a problem to small tasks that you can solve, and focus to clear each task even if you&rsquo;re not so sure about it. Just take little steps, at least it&rsquo;ll lead you to somewhere forward.</p><p>Happy deep learning.</p></div><footer class=post-footer></footer></article></main><footer class=footer><span>&copy; 2021 <a href=https://hiepph.github.io>hiepph</a></span>
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)"><button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></button></a>
+<script>let menu=document.getElementById('menu');menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script></body></html>

@@ -1,5 +1,9 @@
 name: Hugo generate static blog
-on: [push]
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   Generate-Static-Site:
     runs-on: ubuntu-18.04

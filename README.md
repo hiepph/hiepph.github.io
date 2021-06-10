@@ -8,7 +8,7 @@ Generated with [Hugo](https://gohugo.io/) and deployed with Github Action.
 + Pull the repo and theme:
 
 ```
-git clone --recursive git@github.com:hiepph/hiepph.github.io.git
+git clone --recurse-submodules git@github.com:hiepph/hiepph.github.io.git
 ```
 
 + Push new post in `content/post` and static images in `static`

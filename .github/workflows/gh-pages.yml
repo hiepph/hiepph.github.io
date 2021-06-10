@@ -1,4 +1,5 @@
-name: Hugo generate static blog
+name: Deploy on github pages
+
 on:
   push:
     branches:

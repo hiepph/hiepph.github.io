@@ -114,7 +114,7 @@ There are several significant reasons to bring [CI/CD](https://www.wikiwand.com/
 We have to do the same thing over and over again:  building the image, deploy the new build to the production, pulling new models, etc. These repetitive tasks suck. They drain your energy from thinking what the script for this task, which documentation and
 the process you have to look into before doing anything.
 The mantra is **Define then Forget**. You define the automation
-process (script) then forget all about it to reserver energy for other tasks.
+process (script) then forget all about it to reserve energy for other tasks.
 
 Human resource is valuable. The brain is for ideas, not for storage. So be
 wise where to put energy.

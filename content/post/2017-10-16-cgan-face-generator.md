@@ -32,9 +32,6 @@ So we crawled actress' images from Google, used [Dlib](http://dlib.net/) to dete
 Things would be perfect without noises of background.
 But we couldn't find any better source or asked for more.
 
-**Note**: After a month from competition, I teamed up with one of our members - [@pexea12](https://pexea12.github.io/) to release the dataset (mentioned above without the sketches part) as the name of CAF dataset (abbreviation of *Cropped Actresses’ Faces*).
-All mechanism and detail can be found in the blog post: [CAF dataset, over 8.000 faces of famous actresses](http://blog.bayo.vn/caf/).
-
 
 ## Model implementation
 

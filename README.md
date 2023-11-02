@@ -20,8 +20,8 @@ hugo server
 
 ## Deployment
 
-Site is automatically deployed with Github Actions and the supported
-[module](https://github.com/peaceiris/actions-hugo).
+Site is automatically deployed with Github Actions and 
+[actions-hugo](https://github.com/peaceiris/actions-hugo) module.
 
 Generated site and assets are stored in `gh-pages` branch.
 Go to "Settings > Pages" to see available options. 

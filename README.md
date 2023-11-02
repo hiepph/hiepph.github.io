@@ -20,8 +20,8 @@ hugo server
 
 ## Deployment
 
-Site is automatically deployed with Github Actions and 
-[actions-hugo](https://github.com/peaceiris/actions-hugo) module.
+Site is automatically deployed with [Github Actions][0] and 
+[actions-hugo][3] module.
 
 Generated site and assets are stored in `gh-pages` branch.
 Go to "Settings > Pages" to see available options. 
@@ -45,5 +45,7 @@ The configuration for the Github Pages with custom domain can be referred
 [here][2].
 
 
+[0]: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 [1]: https://aws.amazon.com/route53/
 [2]: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
+[3]: https://github.com/peaceiris/actions-hugo

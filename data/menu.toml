@@ -1,0 +1,19 @@
+[[entries]]
+title = "posts"
+
+  [entries.post_list]
+  limit = 2
+  show_more = true
+  show_more_text = "See more..."
+  show_more_url = "posts"
+
+[[entries]]
+title = "rss"
+url = "index.xml"
+
+[[entries]]
+title = "contact"
+
+  [[entries.entries]]
+  title = "github"
+  url = "https://github.com/hiepph"

@@ -2,7 +2,7 @@
 title = "posts"
 
   [entries.post_list]
-  limit = 2
+  limit = 20
   show_more = true
   show_more_text = "See more..."
   show_more_url = "posts"

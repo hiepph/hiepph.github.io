@@ -9,7 +9,8 @@
 git clone --recurse-submodules git@github.com:hiepph/hiepph.github.io.git
 ```
 
-+ Write new posts in `content/posts` and store static images in `static`.
++ Write new posts in `content/posts` and store static images in `static`. Put
+  `toc: true` to render a Table of Contents.
 
 + Run the local server:
 

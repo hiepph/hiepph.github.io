@@ -1,0 +1,42 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="I was updating my CV to apply for a job, and my yak shaving habit led me astray.
+I already wrote my CV in LaTeX and uploaded its source to a personal Gitlab repository. So I was thinking let&rsquo;s use Gitlab CI/CD to automate the process of building my CV. There are some main benefits:
+I can update the LaTeX source everywhere and have Gitlab Runner build my CV without having a LaTeX environment."><title>CV building automation with Gitlab CI
+</title><link rel="shortcut icon" type=image/x-icon href=/><link rel=stylesheet href=/css/main.c5af9bae99b4a3d315b9f39305ffff27e9c3383fbbfd8b5fcaf2237667021a333a982fb958d1813a720b0a660b14022337553ae1ca93ef2ee17c4ae628ac19cb.css integrity="sha512-xa+brpm0o9MVufOTBf//J+nDOD+7/YtfyvIjdmcCGjM6mC+5WNGBOnILCmYLFAIjN1U64cqT7y7hfErmKKwZyw=="></head><body a=light><main class=page-content aria-label=Content><div class=w><a href=/>..</a><article><p class=post-meta><time datetime="2022-03-31 00:00:00 +0000 UTC">Feburary 03, 2022</time></p><h1>CV building automation with Gitlab CI</h1><p>I was updating my CV to apply for a job, and my <a href=https://en.wiktionary.org/wiki/yak_shaving>yak shaving</a> habit led me astray.</p><p>I already wrote my CV in LaTeX and uploaded its source to a personal Gitlab repository. So I was thinking let&rsquo;s use <a href=https://docs.gitlab.com/ee/ci/>Gitlab CI/CD</a> to automate the process of building my CV. There are some main benefits:</p><ol><li><p>I can update the LaTeX source everywhere and have Gitlab Runner build my CV without having a LaTeX environment.</p></li><li><p>I want to have a record of my CV releases.</p></li></ol><h2 id=strategy>Strategy</h2><p>Let&rsquo;s get the idea rolling with a draft diagram:</p><p><img src=/cv-auto/diagram.jpeg alt=diagram></p><ol><li><p>After the source code is tagged, the pipeline is triggered. Each tag represents a release with format <code>&lt;date>-&lt;month>-&lt;semantic-version></code>. For example, <code>2022-03-2.2.13</code> means the CV version 2.2.13 is written in March 2022.</p></li><li><p>Gitlab Runner builds the CV in a LaTeX environment and outputs the PDF version in Gitlab&rsquo;s <a href=https://docs.gitlab.com/ee/ci/pipelines/job_artifacts.html>artifacts</a> directory.</p></li><li><p>Reading the <code>ARTIFACT_URL</code> environment variable from the build phase, Gitlab Runner creates a <a href=https://docs.gitlab.com/ee/user/project/releases/>release</a> pointing to my CV&rsquo;s URL.</p></li></ol><h2 id=code>Code</h2><p>Below is my sample <code>.gitlab-ci.yml</code> configuration:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>stages</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>build</span>
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>release</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>build</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>stage</span>: <span style=color:#ae81ff>build</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>image</span>: <span style=color:#e6db74>&#34;listx/texlive:2020&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>script</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>export THIS_MONTH=$(date +%Y_%m)</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>export OUT_CV=Pham_Hoang_Hiep_cv_${THIS_MONTH}_${CI_COMMIT_SHORT_SHA}</span> <span style=color:#75715e># NOTE [1]</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>pdflatex -file-line-error --jobname=${OUT_CV} cv/cv.tex</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>echo &#34;ARTIFACT_URL=${CI_PROJECT_URL}/-/jobs/${CI_JOB_ID}/artifacts/file/${OUT_CV}.pdf&#34; &gt;&gt; build.env</span> <span style=color:#75715e># NOTE [2]</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>artifacts</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>paths</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;*.pdf&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>reports</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>dotenv</span>: <span style=color:#ae81ff>build.env</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>only</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>tags</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>release</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>stage</span>: <span style=color:#ae81ff>release</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>image</span>: <span style=color:#ae81ff>registry.gitlab.com/gitlab-org/release-cli:latest</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>script</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>echo &#34;Getting artifact from ${ARTIFACT_URL}&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>needs</span>: <span style=color:#75715e># NOTE [2]</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>job</span>: <span style=color:#ae81ff>build</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>artifacts</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>release</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>name</span>: <span style=color:#e6db74>&#34;$CI_COMMIT_TAG&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;Created using release-cli.&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>tag_name</span>: <span style=color:#e6db74>&#34;$CI_COMMIT_TAG&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>assets</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>links</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#e6db74>&#34;CV&#34;</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>url</span>: <span style=color:#e6db74>&#34;${ARTIFACT_URL}&#34;</span> <span style=color:#75715e># NOTE [2]</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>only</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>tags</span>
+</span></span></code></pre></div><p>Some important notes:</p><ol><li><p>Add some salts (e.g. my commit&rsquo;s SHA) to my generated CV in order not to make release URLs conflict. Reference: <a href=https://gitlab.com/gitlab-org/release-cli/-/issues/73>here</a>.</p></li><li><p>Pass the <code>ARTIFACT_URL</code> environment to the next stage (release). Otherwise release wouldn&rsquo;t be able to know the created artifact path.</p></li></ol><h2 id=result>Result</h2><p>And here is my result on the <em>Releases</em> page.</p><p><img src=/cv-auto/release.png alt=release></p><p>Do you see the shiny link to my CV in the <em>Other</em> section?</p><p>That&rsquo;s all folks! Now I should be back to job hunting instead of doing this.</p></article></div></main></body></html>

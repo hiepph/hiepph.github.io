@@ -26,51 +26,9 @@ I bootstrap what packages I need, what process to run to properly set
 up a brand new server to support our platform architecture.
 You can think of a bash script file, but written in YAML and is run remotely from your local machine through SSH.
 
-For example, I need to set up Docker and Docker-compose and some
-necessary directories for the platform on a Ubuntu server.
-
-![ansible](/automation/ansible.png)
-
-The sample code for setting up docker would be (`setup.yaml`):
-
-```yaml
-- name: Set up docker
-  gather_facts: no
-  hosts: all
-  tags: docker
-  become: yes
-  tasks:
-    - name: Install aptitude using apt
-      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
-
-    - name: Install required system packages
-      apt: name={{ item }} state=present update_cache=yes
-      loop: ['apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
-
-    - name: Add Docker GPG apt Key
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
-
-    - name: Add Docker Repository
-      apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu bionic stable
-        state: present
-
-    - name: Update apt and install docker-ce
-      apt: update_cache=yes name=docker-ce state=present
-
-    - name: Install Docker Compose
-      pip:
-        name: docker-compose
-
-    - name: Add user to docker group
-      shell: usermod -aG docker {{ ansible_user }}
-```
-
-The code is self-explanatory. Ansible urges us to
-switch to the mindset of treating our **infrastructure as code**.
-Scripts are managed with version control, have documentation and contribution between team members.
+Ansible urges us to switch to the mindset of treating our **infrastructure as
+code**.  Scripts are managed with version control, have documentation and
+contribution between team members.
 
 I can manage my servers through a hosts file (`/etc/ansible/hosts`):
 

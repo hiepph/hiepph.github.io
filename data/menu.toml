@@ -15,5 +15,19 @@ url = "index.xml"
 title = "contact"
 
   [[entries.entries]]
-  title = "github"
-  url = "https://github.com/hiepph"
+  title = "email: <a href='mailto:hiepph9@proton.me'>hiepph9@proton.me</a>"
+
+  [[entries.entries]]
+  title = "mastodon: <a href='https://hachyderm.io/@hiepph' rel='me'>@hiepph@hachyderm.io</a>"
+
+  [[entries.entries]]
+  title = "github: <a href='https://github.com/hiepph'>@hiepph</a>"
+
+  # [[entries.entries]]
+  # title = "codeberg: <a href='https://codeberg.org/hiepph'>@hiepph</a>"
+
+  [[entries.entries]]
+  title = "matrix: <b>@hiepph@matrix.org</b>"
+
+  [[entries.entries]]
+  title = "pgp: <a href='https://keys.openpgp.org/vks/v1/by-fingerprint/BBF2C431E9634546660EFEC790A65723CD12FF2D'>90A65723CD12FF2D</a>"

@@ -1,7 +1,7 @@
 # Personal blog
 
 
-## Local Writing
+## Writing locally
 
 + Pull the repo and theme:
 
@@ -9,7 +9,7 @@
 git clone --recurse-submodules git@github.com:hiepph/hiepph.github.io.git
 ```
 
-+ Push new post in `content/post` and static images in `static`
++ Write new posts in `content/posts` and store static images in `static`.
 
 + Run the local server:
 
@@ -26,6 +26,11 @@ Site is automatically deployed with Github Actions and the supported
 Generated site and assets are stored in `gh-pages` branch.
 Go to "Settings > Pages" to see available options. 
 
+## Configurations
+
++ `config.toml`: general Hugo configurations. Values here will overwrite
+  theme's `config.toml`.
++ `data/menu.toml`: information displayed in the home page.
 
 ## Domains
 
@@ -40,6 +45,5 @@ The configuration for the Github Pages with custom domain can be referred
 [here][2].
 
 
----
 [1]: https://aws.amazon.com/route53/
 [2]: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site

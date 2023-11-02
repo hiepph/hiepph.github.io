@@ -35,18 +35,25 @@ Go to "Settings > Pages" to see available options.
 
 ## Domains
 
-My blog is reachable via https://hiepph.github.io or https://hiepph.xyz.
+My blog is reachable via [hiepph.github.io][5] or [hiepph.xyz][4].
 
 I registered my domain `hiepph.xyz` on [AWS Route53][1]. All traffic to
-`hiepph.xyz` will first reach Github Pages' IP (via `A`/`AAAA` records), be
-automatically redirected to `www.hiepph.xyz`, and then finally be routed to
-`hiepph.github.io` (via `CNAME` record).
+`hiepph.xyz` first reaches Github Pages' IP (via `A`/`AAAA` records). They are
+then redirected to `www.hiepph.xyz`, and finally routed to `hiepph.github.io`
+(via `CNAME` record).
 
 The configuration for the Github Pages with custom domain can be referred
 [here][2].
+
+It's important to update these values when having a new domain:
+
++ `baseURL` in `config.toml`
++ `cname` in `.github/workflows/gh-pages.yml`
 
 
 [0]: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 [1]: https://aws.amazon.com/route53/
 [2]: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
 [3]: https://github.com/peaceiris/actions-hugo
+[4]: https://hiepph.xyz
+[5]: https://hiepph.github.io

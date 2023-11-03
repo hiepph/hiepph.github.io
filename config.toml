@@ -7,4 +7,4 @@ theme = "nostyleplease"
   [params.theme_config]
     appearance = "light"
     back_home_text = "~/"
-    date_format = "Feburary 01, 2006"
+    date_format = "Jan 01, 2006"

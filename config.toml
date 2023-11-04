@@ -1,6 +1,6 @@
 baseURL = "https://hiepph.xyz/"
 languageCode = "en-us"
-title = "/hiepph"
+title = "hiepph"
 theme = "nostyleplease"
 
 [params]

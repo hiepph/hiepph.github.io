@@ -14,7 +14,7 @@ title = "~/contact"
   title = "email: <a href='mailto:hiepph9@proton.me'>hiepph9@proton.me</a>"
 
   [[entries.entries]]
-  title = "mastodon: <a href='https://hachyderm.io/@hiepph' rel='me'>@hiepph@hachyderm.io</a>"
+  title = "mastodon: <a href='https://infosec.exchange/@hiepph' rel='me'>@hiepph@infosec.exchange</a>"
 
   [[entries.entries]]
   title = "github: <a href='https://github.com/hiepph'>hiepph</a>"

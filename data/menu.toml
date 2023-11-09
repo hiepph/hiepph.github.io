@@ -1,14 +1,19 @@
 [[entries]]
-title = "~/posts"
+title = "posts"
 
   [entries.post_list]
+  section = "posts"
   limit = 20
   show_more = true
   show_more_text = "See more..."
   show_more_url = "posts"
 
 [[entries]]
-title = "~/contact"
+title = "library"
+url = "library"
+
+[[entries]]
+title = "contact"
 
   [[entries.entries]]
   title = "email: <a href='mailto:hiepph9@proton.me'>hiepph9@proton.me</a>"
@@ -26,7 +31,7 @@ title = "~/contact"
   title = "matrix: <b>@hiepph@matrix.org</b>"
 
 [[entries]]
-title = "~/misc"
+title = "misc"
 
   [[entries.entries]]
   title = "rss"

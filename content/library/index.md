@@ -3,7 +3,7 @@
    "layout": "single"
 }
 
-Some learning materials that I have used throughout the year.
+Some learning materials that I have used throughout the years.
 
 ## Computer Networking
 

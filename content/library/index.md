@@ -10,7 +10,7 @@ Some learning materials that I have used throughout the years.
 + [Computer Networking: A Top-Down
   Approach](https://www.goodreads.com/book/show/83847.Computer_Networking) - James F. Kurose
 + [TCP/IP Illustrated, Vol. 1: The Protocols](https://www.goodreads.com/book/show/505560.TCP_IP_Illustrated_Vol_1)
-+ [Email, explained from first principles](https://explained-from-first-principles.com/email/)
++ [Email explained from first principles](https://explained-from-first-principles.com/email/)
   
 ## Operations Systems
 
@@ -114,12 +114,3 @@ Some learning materials that I have used throughout the years.
   Practice](https://fundamentals-of-piano-practice.readthedocs.io/) - Chaun C. Chang
 + Méthode Rose - Ernest Van de Velde
 + [Suzuki method](https://en.wikipedia.org/wiki/Suzuki_method)
-
-## Philosophy
-
-+ [Man's Search for
-  Meaning](https://www.goodreads.com/book/show/4069.Man_s_Search_for_Meaning) - Viktor E. Frankl
-+ [Meditations](https://www.goodreads.com/book/show/30659.Meditations) - Marcus Aurelius
-+ [Letters from a
-  Stoic](https://www.goodreads.com/book/show/97411.Letters_from_a_Stoic) - Seneca
-+ [Zen Mind, Beginner's Mind: Informal Talks on Zen Meditation and Practice](https://www.goodreads.com/book/show/402843.Zen_Mind_Beginner_s_Mind) - Shunryu Suzuki

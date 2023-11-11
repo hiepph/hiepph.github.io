@@ -25,7 +25,12 @@ Site is automatically deployed with [Github Actions][0] and
 [actions-hugo][3] module.
 
 Generated site and assets are stored in `gh-pages` branch.
-Go to "Settings > Pages" to see available options. 
+
+1. Go to "Settings > Pages". In "Build and deployment", choose "Deploy from a
+   branch" source.
+2. Choose `gh-pages` branch, `/ (root)` folder.
+3. Leave custom domain empty, as it will be populated with
+   [peaceiris/actions-gh-pages][6] module.
 
 ## Configurations
 
@@ -57,3 +62,4 @@ It's important to update these values when having a new domain:
 [3]: https://github.com/peaceiris/actions-hugo
 [4]: https://hiepph.xyz
 [5]: https://hiepph.github.io
+[6]: github.com/peaceiris/actions-gh-pages

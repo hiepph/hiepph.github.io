@@ -1,0 +1,41 @@
+[[entries]]
+title = "posts"
+
+  [entries.post_list]
+  section = "posts"
+  limit = 20
+  show_more = true
+  show_more_text = "See more..."
+  show_more_url = "posts"
+
+[[entries]]
+title = "library"
+url = "library"
+
+[[entries]]
+title = "contact"
+
+  [[entries.entries]]
+  title = "email: <a href='mailto:hiepph9@proton.me'>hiepph9@proton.me</a>"
+
+  [[entries.entries]]
+  title = "mastodon: <a href='https://infosec.exchange/@hiepph' rel='me'>@hiepph@infosec.exchange</a>"
+
+  [[entries.entries]]
+  title = "github: <a href='https://github.com/hiepph'>hiepph</a>"
+
+  # [[entries.entries]]
+  # title = "codeberg: <a href='https://codeberg.org/hiepph'>@hiepph</a>"
+
+  [[entries.entries]]
+  title = "matrix: <b>@hiepph@matrix.org</b>"
+
+[[entries]]
+title = "misc"
+
+  [[entries.entries]]
+  title = "rss"
+  url = "index.xml"
+
+  [[entries.entries]]
+  title = "pgp: <a href='https://keys.openpgp.org/vks/v1/by-fingerprint/BBF2C431E9634546660EFEC790A65723CD12FF2D'>90A65723CD12FF2D</a>"

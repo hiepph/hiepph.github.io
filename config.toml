@@ -1,0 +1,15 @@
+baseURL = "https://hiepph.xyz/"
+languageCode = "en-us"
+title = "hiepph"
+theme = "nostyleplease"
+
+[params]
+  [params.theme_config]
+    appearance = "light"
+    back_home_text = "~/"
+    date_format = "Jan 01, 2006"
+
+[security]
+  enableInlineShortcodes = true
+  [security.exec]
+    allow = [ "^asciidoctor$" ]

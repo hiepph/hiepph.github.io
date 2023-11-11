@@ -78,9 +78,6 @@ Some learning materials that I have used throughout the years.
 
 + [Hackers and Painters: Big Ideas from the Computer
   Age](https://www.goodreads.com/book/show/41793.Hackers_and_Painters) - Paul Graham
-+ [Just for Fun: The Story of an Accidental
-  Revolutionary](https://www.goodreads.com/book/show/160171.Just_for_Fun) -
-  Linus Torvalds
 
 ---
 

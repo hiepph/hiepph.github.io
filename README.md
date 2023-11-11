@@ -40,7 +40,8 @@ Generated site and assets are stored in `gh-pages` branch.
 
 ## Domains
 
-My blog is reachable via [hiepph.github.io][5] or [hiepph.xyz][4].
+My blog is reachable via [hiepph.github.io][5] or [hiepph.xyz][4], provided that
+this repository is **public**.
 
 I registered my domain `hiepph.xyz` on [AWS Route53][1]. All traffic to
 `hiepph.xyz` first reaches Github Pages' IP (via `A`/`AAAA` records). They are

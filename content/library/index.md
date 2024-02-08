@@ -40,6 +40,10 @@ Some learning materials that I have used throughout the years.
 + [The C Programming Language](https://www.goodreads.com/book/show/515601.The_C_Programming_Language)
 + [Notes on Data Structures and Programming
   Techniques](https://cs.yale.edu/homes/aspnes/classes/223/notes.html) - Yale University
+  
+## Python
+
++ [Dead simple Python](https://www.goodreads.com/book/show/52555538-dead-simple-python)
 
 ## Ruby
 

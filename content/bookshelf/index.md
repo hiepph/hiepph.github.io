@@ -1,5 +1,5 @@
 {
-   "title": "Library",
+   "title": "Bookshelf",
    "layout": "single"
 }
 

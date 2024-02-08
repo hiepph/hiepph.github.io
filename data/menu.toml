@@ -9,8 +9,8 @@ title = "posts"
   show_more_url = "posts"
 
 [[entries]]
-title = "library"
-url = "library"
+title = "bookshelf"
+url = "bookshelf"
 
 [[entries]]
 title = "contact"

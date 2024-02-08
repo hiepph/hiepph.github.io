@@ -40,10 +40,6 @@ Some learning materials that I have used throughout the years.
 + [The C Programming Language](https://www.goodreads.com/book/show/515601.The_C_Programming_Language)
 + [Notes on Data Structures and Programming
   Techniques](https://cs.yale.edu/homes/aspnes/classes/223/notes.html) - Yale University
-  
-## Python
-
-+ [Dead simple Python](https://www.goodreads.com/book/show/52555538-dead-simple-python)
 
 ## Ruby
 
@@ -82,9 +78,6 @@ Some learning materials that I have used throughout the years.
 
 + [Hackers and Painters: Big Ideas from the Computer
   Age](https://www.goodreads.com/book/show/41793.Hackers_and_Painters) - Paul Graham
-+ [Just for Fun: The Story of an Accidental
-  Revolutionary](https://www.goodreads.com/book/show/160171.Just_for_Fun) -
-  Linus Torvalds
 
 ---
 

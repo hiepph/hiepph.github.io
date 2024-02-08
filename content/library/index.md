@@ -3,21 +3,17 @@
    "layout": "single"
 }
 
-Some learning materials that I have used throughout the years.
+Some learning materials that has left big impact on me.
+
 
 ## Computer Networking
 
-+ [Computer Networking: A Top-Down
-  Approach](https://www.goodreads.com/book/show/83847.Computer_Networking) - James F. Kurose
-+ [TCP/IP Illustrated, Vol. 1: The Protocols](https://www.goodreads.com/book/show/505560.TCP_IP_Illustrated_Vol_1)
-+ [Email explained from first principles](https://explained-from-first-principles.com/email/)
++ [Computer Networking: A Top-Down Approach](https://www.goodreads.com/book/show/83847.Computer_Networking) - James F. Kurose
   
 ## Operations Systems
 
-+ [Operating Systems: Three Easy
-  Pieces](https://www.goodreads.com/book/show/17374825-operating-systems) - Remzi H. Arpaci-Dusseau
-+ [Operating System
-  Concepts](https://www.goodreads.com/book/show/83833.Operating_System_Concepts) - Abraham Silberschatz
++ [Operating Systems: Three Easy Pieces](https://www.goodreads.com/book/show/17374825-operating-systems) - Remzi H. Arpaci-Dusseau
++ [Operating System Concepts](https://www.goodreads.com/book/show/83833.Operating_System_Concepts) - Abraham Silberschatz
   
 ## Computer Science
 
@@ -38,8 +34,11 @@ Some learning materials that I have used throughout the years.
 ## C
 
 + [The C Programming Language](https://www.goodreads.com/book/show/515601.The_C_Programming_Language)
-+ [Notes on Data Structures and Programming
-  Techniques](https://cs.yale.edu/homes/aspnes/classes/223/notes.html) - Yale University
++ [Notes on Data Structures and Programming Techniques](https://cs.yale.edu/homes/aspnes/classes/223/notes.html) - Yale University
+  
+## Python
+
++ [Dead simple Python](https://www.goodreads.com/book/show/52555538-dead-simple-python)
 
 ## Ruby
 
@@ -55,9 +54,7 @@ Some learning materials that I have used throughout the years.
 
 + [Kubernetes in Action](https://www.goodreads.com/book/show/34013922-kubernetes-in-action)
 + [Terraform in Action](https://www.goodreads.com/book/show/50542114-terraform-in-action)
-+ [Ansible for
-  DevOps](https://www.goodreads.com/book/show/27111284-ansible-for-devops) -
-  Jeff Geerling
++ [Ansible for DevOps](https://www.goodreads.com/book/show/27111284-ansible-for-devops) - Jeff Geerling
 
 
 ## Software Engineering
@@ -71,14 +68,6 @@ Some learning materials that I have used throughout the years.
 
 + [Practical Vim: Edit Text at the Speed of Thought](https://www.goodreads.com/book/show/13607232-practical-vim)
 
-
----
-
-## Technology
-
-+ [Hackers and Painters: Big Ideas from the Computer
-  Age](https://www.goodreads.com/book/show/41793.Hackers_and_Painters) - Paul Graham
-
 ---
 
 ## Physics
@@ -89,25 +78,16 @@ Some learning materials that I have used throughout the years.
 ## Maths
 
 + [Calculus Made Easy](https://calculusmadeeasy.org/)
-+ [A First Course in Complex Analysis](https://www.goodreads.com/book/show/202442.A_First_Course_in_Complex_Analysis)
-+ [Elementary Linear Algebra: Applications Version](https://www.goodreads.com/book/show/24123355-elementary-linear-algebra)
 
 ---
 
 ## Writing
 
-+ [What I Talk About When I Talk About
-  Running](https://www.goodreads.com/book/show/2195464.What_I_Talk_About_When_I_Talk_About_Running) -
-  Haruki Murakami
-+ [Novelist as a
-  Vocation](https://www.goodreads.com/book/show/60623107-novelist-as-a-vocation) -
-  Haruki Murakami
-+ [On Writing](https://www.goodreads.com/book/show/42683.On_Writing) - Ernest Hemingway
++ [What I Talk About When I Talk About Running](https://www.goodreads.com/book/show/2195464.What_I_Talk_About_When_I_Talk_About_Running) - Haruki Murakami
++ [Novelist as a Vocation](https://www.goodreads.com/book/show/60623107-novelist-as-a-vocation) - Haruki Murakami
 
 
 ## Piano
 
-+ [Fundamentals of Piano
-  Practice](https://fundamentals-of-piano-practice.readthedocs.io/) - Chaun C. Chang
-+ Méthode Rose - Ernest Van de Velde
++ [Fundamentals of Piano Practice](https://fundamentals-of-piano-practice.readthedocs.io/) - Chaun C. Chang
 + [Suzuki method](https://en.wikipedia.org/wiki/Suzuki_method)

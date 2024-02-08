@@ -3,7 +3,7 @@
    "layout": "single"
 }
 
-Some learning materials that has left big impact on me.
+Some learning materials that have left big impacts on me.
 
 
 ## Computer Networking
@@ -73,7 +73,7 @@ Some learning materials that has left big impact on me.
 ## Physics
 
 + [So You Want to Learn Physics...](https://www.susanrigetti.com/physics)
-+ [University Physics with Modern Physics ](https://www.goodreads.com/book/show/125139.University_Physics_with_Modern_Physics)
++ [University Physics with Modern Physics](https://www.goodreads.com/book/show/125139.University_Physics_with_Modern_Physics)
 
 ## Maths
 

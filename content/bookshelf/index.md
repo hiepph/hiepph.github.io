@@ -10,7 +10,7 @@ Some learning materials that have left big impacts on me.
 
 + [Computer Networking: A Top-Down Approach](https://www.goodreads.com/book/show/83847.Computer_Networking) - James F. Kurose
   
-## Operations Systems
+## Operating Systems
 
 + [Operating Systems: Three Easy Pieces](https://www.goodreads.com/book/show/17374825-operating-systems) - Remzi H. Arpaci-Dusseau
 + [Operating System Concepts](https://www.goodreads.com/book/show/83833.Operating_System_Concepts) - Abraham Silberschatz

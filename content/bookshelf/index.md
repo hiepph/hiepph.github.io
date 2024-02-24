@@ -36,7 +36,7 @@ Some learning materials that have left big impacts on me.
 
 ---
 
-## Writing & Art
+## Writing, Art & Music
 
 + [What I Talk About When I Talk About Running](https://www.goodreads.com/book/show/2195464.What_I_Talk_About_When_I_Talk_About_Running) - Haruki Murakami
 

@@ -5,7 +5,7 @@
 
 Some learning materials that have left big impacts on me.
 
-## Software Engineering and Computer Science
+## Software Engineering & Computer Science
 
 + [Computer Networking: A Top-Down Approach](https://www.goodreads.com/book/show/83847.Computer_Networking) - James F. Kurose
   
@@ -18,8 +18,6 @@ Some learning materials that have left big impacts on me.
 + [Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests/)
 + [Writing An Interpreter In Go](https://interpreterbook.com/)
 
-+ [Notes on Data Structures and Programming Techniques](https://cs.yale.edu/homes/aspnes/classes/223/notes.html) - Yale University
-  
 + [Dead simple Python](https://www.goodreads.com/book/show/52555538-dead-simple-python)
 
 + [Kubernetes in Action](https://www.goodreads.com/book/show/34013922-kubernetes-in-action)
@@ -30,7 +28,7 @@ Some learning materials that have left big impacts on me.
 
 ---
 
-## Science and Maths
+## Science & Mathematics
 
 + [So You Want to Learn Physics...](https://www.susanrigetti.com/physics)
 
@@ -38,7 +36,7 @@ Some learning materials that have left big impacts on me.
 
 ---
 
-## Writing and Art
+## Writing & Art
 
 + [What I Talk About When I Talk About Running](https://www.goodreads.com/book/show/2195464.What_I_Talk_About_When_I_Talk_About_Running) - Haruki Murakami
 
@@ -48,6 +46,6 @@ Some learning materials that have left big impacts on me.
 
 ---
 
-# Philosophy and Psychology
+# Philosophy & Psychology
 
 + [The Road Less Travelled](https://www.goodreads.com/book/show/347852.The_Road_Less_Traveled) - M.Scott Peck

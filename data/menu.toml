@@ -13,6 +13,18 @@ title = "bookshelf"
 url = "bookshelf"
 
 [[entries]]
+title = "portfolios"
+
+  [[entries.entries]]
+  title = "<a href='https://github.com/hiepph'>github</a>"
+
+  [[entries.entries]]
+  title = "<a href='https://codeberg.org/hiepph'>codeberg</a>"
+
+  [[entries.entries]]
+  title = "<a href='https://www.flickr.com/photos/hiepph/'>flickr</a>"
+
+[[entries]]
 title = "contact"
 
   [[entries.entries]]
@@ -22,13 +34,7 @@ title = "contact"
   title = "mastodon: <a href='https://infosec.exchange/@hiepph' rel='me'>@hiepph@infosec.exchange</a>"
 
   [[entries.entries]]
-  title = "github: <a href='https://github.com/hiepph'>hiepph</a>"
-
-  # [[entries.entries]]
-  # title = "codeberg: <a href='https://codeberg.org/hiepph'>@hiepph</a>"
-
-  [[entries.entries]]
-  title = "matrix: <b>@hiepph@matrix.org</b>"
+  title = "matrix: @hiepph@matrix.org"
 
 [[entries]]
 title = "misc"

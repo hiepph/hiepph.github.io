@@ -13,18 +13,6 @@ title = "bookshelf"
 url = "bookshelf"
 
 [[entries]]
-title = "portfolios"
-
-  [[entries.entries]]
-  title = "<a href='https://github.com/hiepph'>github</a>"
-
-  [[entries.entries]]
-  title = "<a href='https://codeberg.org/hiepph'>codeberg</a>"
-
-  [[entries.entries]]
-  title = "<a href='https://www.flickr.com/photos/hiepph/'>flickr</a>"
-
-[[entries]]
 title = "contact"
 
   [[entries.entries]]
@@ -45,3 +33,12 @@ title = "misc"
 
   [[entries.entries]]
   title = "pgp: <a href='https://keys.openpgp.org/vks/v1/by-fingerprint/BBF2C431E9634546660EFEC790A65723CD12FF2D'>90A65723CD12FF2D</a>"
+
+  [[entries.entries]]
+  title = "<a href='https://github.com/hiepph'>github</a>"
+
+  [[entries.entries]]
+  title = "<a href='https://codeberg.org/hiepph'>codeberg</a>"
+
+  [[entries.entries]]
+  title = "<a href='https://www.flickr.com/photos/hiepph/'>flickr</a>"

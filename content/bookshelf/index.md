@@ -53,3 +53,11 @@ Some learning materials that have left big impacts on me.
 + [The Road Less Travelled](https://www.goodreads.com/book/show/347852.The_Road_Less_Traveled) - M.Scott Peck
 
 + [Letters to a Young Poet](https://youtu.be/32Yn7WuOU0o?si=twrtKCpWoFgU2u1q) - Rainer Maria Rilke
+
+---
+
+# Novels
+
++ [Norwegian Wood](https://www.goodreads.com/book/show/11297.Norwegian_Wood) - Haruki Murakami
+
++ [Killing Commendatore](https://www.goodreads.com/book/show/38820047-killing-commendatore) - Haruki Murakami

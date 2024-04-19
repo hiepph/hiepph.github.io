@@ -44,8 +44,12 @@ Some learning materials that have left big impacts on me.
 
 + [Fundamentals of Piano Practice](https://fundamentals-of-piano-practice.readthedocs.io/) - Chaun C. Chang
 
++ []
+
 ---
 
-# Philosophy & Psychology
+# Contemplation
 
 + [The Road Less Travelled](https://www.goodreads.com/book/show/347852.The_Road_Less_Traveled) - M.Scott Peck
+
++ [Letters to a Young Poet](https://youtu.be/32Yn7WuOU0o?si=twrtKCpWoFgU2u1q) - Rainer Maria Rilke

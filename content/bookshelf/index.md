@@ -3,7 +3,7 @@
    "layout": "single"
 }
 
-Some learning materials that have left big impacts on me.
+Some reading materials that have left big impacts on me.
 
 ## Software Engineering & Computer Science
 
@@ -43,8 +43,6 @@ Some learning materials that have left big impacts on me.
 + [Novelist as a Vocation](https://www.goodreads.com/book/show/60623107-novelist-as-a-vocation) - Haruki Murakami
 
 + [Fundamentals of Piano Practice](https://fundamentals-of-piano-practice.readthedocs.io/) - Chaun C. Chang
-
-+ []
 
 ---
 

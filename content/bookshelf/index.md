@@ -9,8 +9,6 @@ Some reading materials that have left big impacts on me.
 
 + [Computer Networking: A Top-Down Approach](https://www.goodreads.com/book/show/83847.Computer_Networking) - James F. Kurose
   
-+ [Operating Systems: Three Easy Pieces](https://www.goodreads.com/book/show/17374825-operating-systems) - Remzi H. Arpaci-Dusseau
-  
 + [Introduction to Algorithms](https://www.goodreads.com/book/show/108986.Introduction_to_Algorithms)
 
 + [Clojure for the Brave and True](https://www.braveclojure.com/)
@@ -18,7 +16,7 @@ Some reading materials that have left big impacts on me.
 + [Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests/)
 + [Writing An Interpreter In Go](https://interpreterbook.com/)
 
-+ [Dead simple Python](https://www.goodreads.com/book/show/52555538-dead-simple-python)
++ [Dead Simple Python](https://www.goodreads.com/book/show/52555538-dead-simple-python)
 
 + [Kubernetes in Action](https://www.goodreads.com/book/show/34013922-kubernetes-in-action)
 
@@ -46,16 +44,8 @@ Some reading materials that have left big impacts on me.
 
 ---
 
-# Contemplation
+# Life
 
 + [The Road Less Travelled](https://www.goodreads.com/book/show/347852.The_Road_Less_Traveled) - M.Scott Peck
 
 + [Letters to a Young Poet](https://youtu.be/32Yn7WuOU0o?si=twrtKCpWoFgU2u1q) - Rainer Maria Rilke
-
----
-
-# Novels
-
-+ [Norwegian Wood](https://www.goodreads.com/book/show/11297.Norwegian_Wood) - Haruki Murakami
-
-+ [Killing Commendatore](https://www.goodreads.com/book/show/38820047-killing-commendatore) - Haruki Murakami

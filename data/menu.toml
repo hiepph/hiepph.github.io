@@ -25,16 +25,16 @@ title = "contact"
 title = "social"
 
   [[entries.entries]]
-  title = "mastodon: <a href='https://infosec.exchange/@hiepph' rel='me'>@hiepph@infosec.exchange</a>"
-
-  [[entries.entries]]
   title = "<a href='https://github.com/hiepph'>github</a>"
-
-  # [[entries.entries]]
-  # title = "<a href='https://codeberg.org/hiepph'>codeberg</a>"
 
   [[entries.entries]]
   title = "<a href='https://www.flickr.com/photos/hiepph/'>flickr</a>"
+
+  # [[entries.entries]]
+  # title = "mastodon: <a href='https://infosec.exchange/@hiepph' rel='me'>@hiepph@infosec.exchange</a>"
+
+  # [[entries.entries]]
+  # title = "<a href='https://codeberg.org/hiepph'>codeberg</a>"
 
 [[entries]]
 title = "misc"
